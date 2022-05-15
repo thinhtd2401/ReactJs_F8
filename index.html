@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn React</title>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style type="text/css">
+        button, a {
+            --color: rgb(0, 0, 0);
+            --background-color: transparent;
+            background-color: var(--background-color);
+            color: var(--color);
+            padding: 5px 10px;
+            font-size: 15px;
+            border-radius: 8px;
+            font-size: 15px;
+            border: 1px solid var(--color);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            display: flex;
+            column-gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <dir id="root"></dir>
+    <script type="text/babel">
+
+       const Button = ({text, href, onClick}) => {
+        let TagName = 'button';
+        let props = {};
+
+        if(href){
+            props.href = href;
+            TagName = 'a';
+        }
+
+        if(onClick) {
+            props.onClick = onClick;
+        }
+
+        return <TagName {...props}> {text} </TagName>; 
+        };
+
+        const App = () => (<div className="container">
+                <Button 
+                    text='Button'  
+                    onClick={() => console.log(Math.random())}>
+                </Button>
+
+                <Button 
+                    text='Link' 
+                    href='http://google.com.vn'>
+                </Button>
+
+                <Button 
+                    text='Button Link' 
+                    href='http://google.com.vn' 
+                    onClick={() => console.log(Math.random())}>
+                </Button>
+            </div>);
+
+       
+        ReactDOM.render(<App/>, document.getElementById('root'))
+    </script>
+</body>
+</html>
